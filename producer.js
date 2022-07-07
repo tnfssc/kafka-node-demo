@@ -1,26 +1,22 @@
 import kafka from "./kafka.js";
-import { createInterface } from "readline";
-
-const readline = createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+import { question } from "./utils.js";
 
 const producer = kafka.producer();
 
-const handleMsg = async () => {
-  readline.question("", async msg => {
-    await producer.send({
-      topic: "test-topic",
-      messages: [{ value: `${msg}` }],
-    });
-    handleMsg();
+await producer.connect();
+console.log("Enter a message to send: ");
+
+while (1) {
+  const msg = await question("");
+  if (msg === "exit") {
+    console.log("Exiting...");
+    break;
+  }
+  await producer.send({
+    topic: "test-topic",
+    messages: [{ value: `${msg}` }],
   });
-};
+}
 
-producer.connect().then(() => {
-  console.log("Enter a message to send: ");
-  handleMsg();
-});
-
-// producer.disconnect()
+await producer.disconnect();
+process.exit(0);
