@@ -1,8 +1,9 @@
-const { Kafka } = require("kafkajs");
+import { Kafka } from "kafkajs";
+import { brokerUrl } from "./config.js";
 
 const kafka = new Kafka({
   clientId: "my-app",
-  brokers: ["localhost:9092"],
+  brokers: [brokerUrl],
 });
 
-module.exports = kafka;
+export default kafka;

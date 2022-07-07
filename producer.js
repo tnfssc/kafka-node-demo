@@ -1,6 +1,7 @@
-const kafka = require("./kafka");
+import kafka from "./kafka.js";
+import { createInterface } from "readline";
 
-const readline = require("readline").createInterface({
+const readline = createInterface({
   input: process.stdin,
   output: process.stdout,
 });
