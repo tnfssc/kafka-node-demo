@@ -1,4 +1,6 @@
-# [Kafka](https://kafka.apache.org/) chat demo using [KafkaJS](https://kafka.js.org/)
+# ![demo](./demo.png)
+
+## [Kafka](https://kafka.apache.org/) chat demo using [KafkaJS](https://kafka.js.org/)
 
 ```sh
 node chat.js          # Start the chat client
